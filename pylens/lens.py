@@ -1,3 +1,6 @@
+comp2 = lambda f: lambda g: lambda x: f(g(x))
+
+
 class Lens (object):
     """
     Based loosely on the first 6 pages of this paper:
