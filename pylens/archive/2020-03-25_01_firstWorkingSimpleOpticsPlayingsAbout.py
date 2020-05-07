@@ -55,12 +55,12 @@ first.set("bar")(("foo", 7)) # ("bar", 7)
 makeFirstFalse = first.set(False) # premake a setter (just a setter function now, no longer a Lens)
 makeFirstFalse((True, 7)) # (False, 7)
 # map premade setter func over a list of pairs
-cmap(makeFirstFalse)([(True, 7), (False, 3), (True, 42)])
+cmap(makeFirstFalse)([(True, 7), (False, 3), (True, 42)]) # [(False, 7), (False, 3), (False, 42)]
 # give a name to previous idea of Falsifying all first values in list
 clearAll = cmap(makeFirstFalse)
 clearAll(([(True, 7), (False, 3), (True, 42)])) # same as cmap example above
 
-# LENS ON ELEMENT OF LIST
+# LENS ON ELEMENT OF LIST (non-total; fails on empty list)
 nth_get = lambda n: lambda xs: xs[n]
 nth_set = lambda n: lambda v: lambda xs: xs[:n] + [v] + xs[n+1:]
 nth = lambda n: Lens(nth_get(n), nth_set(n))
@@ -72,9 +72,9 @@ nth(2).set(7)(xs) # [1, 2, 7, 4, 5]
 nth(3).modify(add(5))(xs) # [1, 2, 3, 9, 5]
 
 # COMPOSE LENSES
-(first | second).get(((False, "foo"), 7)) # get
-(first | second).set("bar")(((False, "foo"), 7)) # set
-(first | second).modify(reverse)(((False, "foo"), 7)) # modify
+(first | second).get(((False, "foo"), 7)) # "foo"
+(first | second).set("bar")(((False, "foo"), 7)) # ((False, "bar"), 7)
+(first | second).modify(reverse)(((False, "foo"), 7)) # ((False, "oof"), 7)
 
 # LENS ON DICTS
 key_get = lambda k: lambda d: d[k]
