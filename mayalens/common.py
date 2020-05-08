@@ -1,3 +1,6 @@
+from .lens import Lens
+
+
 # LENS ON FIRST ELEMENT OF PAIR
 _1_get = lambda (x, _): x
 _1_set = lambda v: lambda (x, y): (v, y)
