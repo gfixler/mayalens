@@ -1,9 +1,6 @@
 import unittest
 from nose.plugins.attrib import attr
 
-from hypothesis import given
-import hypothesis.strategies as st
-
 # try:
 #     import maya.cmds as cmds
 # except ImportError:
