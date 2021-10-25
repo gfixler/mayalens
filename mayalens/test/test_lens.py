@@ -19,3 +19,9 @@ class Test_Lens (unittest.TestCase):
         self.assertEquals(myLens.set("bar")("foo"), "bar")
         self.assertEquals(myLens.modify(const("baz"))("foo"), "baz")
 
+    def test_callingLensGetsValue (self):
+        myLens = Lens(ident, const)
+        expected = myLens.get(const("baz"))("foo")
+        actual = myLens(const("baz"))("foo")
+        self.assertEquals(expected, actual)
+

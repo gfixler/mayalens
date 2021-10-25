@@ -28,6 +28,9 @@ class Lens (object):
         self.get = getter
         self.set = setter
 
+    def __call__ (self, x):
+        return self.get(x)
+
     def modify (self, f):
         return lambda s: self.set(f(self.get(s)))(s)
 
