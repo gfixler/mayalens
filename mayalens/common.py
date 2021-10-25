@@ -13,7 +13,7 @@ _2 = Lens(_2_get, _2_set)
 
 # LENS ON ELEMENT OF LIST
 nth_get = lambda n: lambda xs: xs[n]
-nth_set = lambda n: lambda v: lambda xs: xs[:n] + [v] + xs[n+1:]
+nth_set = lambda n: lambda v: lambda xs: xs[:n] + [v] + xs[n + 1:]
 nth = lambda n: Lens(nth_get(n), nth_set(n))
 
 # LENS ON CHARACTER IN STRING
